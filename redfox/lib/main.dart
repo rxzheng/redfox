@@ -28,6 +28,17 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
+  var favourites = <WordPair>[];
+  void toggleFavourite(){
+    if(favourites.contains(current)){
+      favourites.remove(current);
+      else{
+        favourites.add(current);
+      
+      }
+      notifyListeners();
+    })
+  }
 
   void getNext() {
     current = WordPair.random();
