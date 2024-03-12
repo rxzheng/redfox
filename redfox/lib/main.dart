@@ -43,10 +43,10 @@ class MyHomePage extends StatelessWidget {
       body: Column(
         children: [
           Text('Caiuses idea:'),
-          Text(appState.getNext()),
+          Text(appState.current.asLowerCase),
           ElevatedButton(
               onPressed: () {
-                print('hi!');
+                appState.getNext();
               },
               child: Text('Next'))
         ],
