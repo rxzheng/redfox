@@ -7,7 +7,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +44,6 @@ class MyAppState extends ChangeNotifier {
   }
 }
 
-// ...
-
 class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -53,20 +51,21 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    Widget page;
-    switch (selectedIndex) {
-      case 0:
-        page = GeneratorPage();
-        break;
-      case 1:
-        page = FavoritesPage();
-        break;
-      default:
-        throw UnimplementedError('no widget for $selectedIndex');
-    }
     return LayoutBuilder(builder: (context, constraints) {
+      Widget page;
+      switch (selectedIndex) {
+        case 0:
+          page = GeneratorPage();
+          break;
+        case 1:
+          page = FavoritesPage();
+          break;
+        default:
+          throw UnimplementedError('no widget for $selectedIndex');
+      }
       return Scaffold(
         body: Row(
           children: [
@@ -94,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Expanded(
               child: Container(
                 color: Theme.of(context).colorScheme.primaryContainer,
-                child: GeneratorPage(),
+                child: page,
               ),
             ),
           ],
@@ -148,12 +147,11 @@ class GeneratorPage extends StatelessWidget {
   }
 }
 
-// ...
 class BigCard extends StatelessWidget {
   const BigCard({
-    super.key,
+    Key? key,
     required this.pair,
-  });
+  }) : super(key: key);
 
   final WordPair pair;
 
